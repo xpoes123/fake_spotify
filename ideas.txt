@@ -1,6 +1,6 @@
-First make a way to download songs off of youtube and store them into a folder.
-Once downloaded, make them playable.
-Maybe eventually create some sort of similarity score, or find patterns in listening
-
-
-Add playlists as well
+Todo list
+- Add playlists
+- Add drop down menu for the next few options
+- Add delete songs ability
+- Add song queue
+- Add volume slider

@@ -16,7 +16,6 @@ def refresh():
     os.popen("python3 GUI.py") 
 
 class App(customtkinter.CTk):
-
     frames = {"frame1": None, "frame2": None}
 
     def frame1_selector(self):
@@ -30,14 +29,15 @@ class App(customtkinter.CTk):
     def quit(self):
         exit()
 
-    def play(self, number):
-        play_library = main.view_library()
-        song_to_play = number-1
+    def play(self, number, song_list):
+        song_to_play = number
+        print(song_to_play)
         mixer.init()
   
         # Loading the song
-        mixer.music.load(str("./songs/" + play_library[int(song_to_play)-1]))
-        
+        print(song_list[int(song_to_play)])
+        mixer.music.load(str("./songs/" + song_list[int(song_to_play)]))
+
         # Setting the volume
         mixer.music.set_volume(0.7)
         
@@ -47,8 +47,6 @@ class App(customtkinter.CTk):
     def download(self, url, name):
         videoDownloader.download(url, name)
         refresh()
-
-    
 
     def pause(self, val):
         if val == 0:
@@ -91,8 +89,9 @@ class App(customtkinter.CTk):
         App.frames['frame1'] = customtkinter.CTkFrame(main_container,fg_color="gray26")
         song_list = main.view_library()
         bts = []
+        print(song_list)
         for i in range(len(song_list)):
-            bts.append(customtkinter.CTkButton(App.frames['frame1'], text = str(str(i+1) + " " +  (song_list[i][0:song_list[i].index(".")]).replace("_", " ")), command = lambda a = i: self.play(a)))
+            bts.append(customtkinter.CTkButton(App.frames['frame1'], text = str(str(i+1) + " " +  (song_list[i][0:song_list[i].index(".")]).replace("_", " ")), command = lambda a = i: self.play(a, song_list)))
         for i in range(len(bts)):
             bts[i].grid(pady = 12, padx = 10)
         pause_music = customtkinter.CTkButton(App.frames['frame1'], text="Pause Music", command= lambda: self.pause(0))
