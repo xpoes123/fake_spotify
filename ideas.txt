@@ -1,0 +1,6 @@
+First make a way to download songs off of youtube and store them into a folder.
+Once downloaded, make them playable.
+Maybe eventually create some sort of similarity score, or find patterns in listening
+
+
+Add playlists as well
