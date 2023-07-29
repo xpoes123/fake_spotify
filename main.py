@@ -2,13 +2,14 @@ import library
 import videoDownloader
 from pydub import AudioSegment
 from pydub.playback import play
+import customtkinter as ct
 
 SONG_PATH = "./songs/"
 
 def main(): 
     print("Welcome to fake spotify")
     while(True):
-        action = input("Type 1 to view your library, 2 to download a new song, 3 to play a song, 4 to exit")
+        action = input("Type 1 to edit your library, 2 to download a new song, 3 to play a song, 4 to exit")
         if action == "1":
             view_library()
         elif action == "2":
@@ -19,7 +20,7 @@ def main():
             exit()
 
 
-def play_song():
+def play_song(name):
     play_library = view_library()
     song_to_play = input("Which song do you want to play? (Number)")
     audio = AudioSegment.from_wav(str(SONG_PATH + play_library[int(song_to_play)-1]))
@@ -30,7 +31,7 @@ def download():
 
 def view_library():
     library2 = library.Library()
-    library2.print_library()
+    library2.setup()
     return library2.songs
 
 if __name__ == "__main__":
